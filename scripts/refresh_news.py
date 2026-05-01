@@ -33,6 +33,11 @@ BLOCKED_PHRASES = (
     "log in",
     "watch full replay",
 )
+HUDL_PROFILE_URL = "https://www.hudl.com/profile/28661626/Matthew-Kuppinen/highlights"
+HUDL_TITLE_PATTERN = re.compile(r"\bvs\s+\S", re.I)
+HUDL_EMBED_PATTERN = re.compile(r"window\.__hudlEmbed=(\{.*?\});</script>", re.S)
+HUDL_TARGET_USER_ID = "28661626"
+HUDL_VIDEO_LIMIT = 3
 
 SECTIONS: dict[str, dict[str, Any]] = {
     "maxpreps": {
@@ -138,6 +143,78 @@ def hydrate_item(item: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def format_display_date(value: str) -> str:
+    dt = datetime.fromisoformat(value.replace("Z", "+00:00")).astimezone(timezone.utc)
+    month_map = {
+        1: "Jan.",
+        2: "Feb.",
+        3: "Mar.",
+        4: "Apr.",
+        5: "May",
+        6: "June",
+        7: "July",
+        8: "Aug.",
+        9: "Sept.",
+        10: "Oct.",
+        11: "Nov.",
+        12: "Dec.",
+    }
+    return f"{month_map[dt.month]} {dt.day}, {dt.year}"
+
+
+def normalize_title(value: str) -> str:
+    value = WHITESPACE_PATTERN.sub(" ", value).strip()
+    return re.sub(r"\s*•\s*", " • ", value)
+
+
+def extract_hudl_items() -> list[dict[str, str]]:
+    html = fetch_html(HUDL_PROFILE_URL)
+    match = HUDL_EMBED_PATTERN.search(html)
+    if not match:
+        raise RuntimeError("Could not find Hudl embed payload on the highlights page.")
+
+    payload = json.loads(match.group(1))
+    feed_items = payload["model"]["feedContentItems"]
+    results: list[dict[str, str]] = []
+
+    for feed_item in feed_items:
+        highlights = feed_item.get("content", {}).get("item", {}).get("highlights", [])
+        if not highlights:
+            continue
+
+        highlight = highlights[0]
+        user_id = highlight.get("userId")
+        title = normalize_title(highlight.get("title", ""))
+        if user_id != HUDL_TARGET_USER_ID or not HUDL_TITLE_PATTERN.search(title):
+            continue
+
+        video_url = next(
+            (item["url"] for item in highlight.get("videoFiles", []) if item.get("quality") == 480),
+            None,
+        )
+        if not video_url:
+            continue
+
+        results.append(
+            {
+                "date": format_display_date(feed_item["displayDate"]),
+                "title": title,
+                "poster": highlight["thumbnail"]["url"],
+                "videoUrl": video_url,
+                "url": f"https://www.hudl.com/video/3/{user_id}/{highlight['reelId']}",
+                "cta": "Open on Hudl",
+            }
+        )
+
+        if len(results) >= HUDL_VIDEO_LIMIT:
+            break
+
+    if len(results) < HUDL_VIDEO_LIMIT:
+        raise RuntimeError("Could not find enough valid public Hudl highlights.")
+
+    return results
+
+
 def build_payload() -> dict[str, Any]:
     sections: dict[str, Any] = {}
 
@@ -149,6 +226,11 @@ def build_payload() -> dict[str, Any]:
             "source": section["source"],
             "items": hydrated_items,
         }
+
+    sections["hudl"] = {
+        "source": "Hudl",
+        "items": extract_hudl_items(),
+    }
 
     return {
         "generatedAt": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),

@@ -249,31 +249,7 @@
             <h2>Hudl Game Film</h2>
           </div>
 
-          <div class="hudl-grid">
-            <article class="hudl-card">
-              <div class="hudl-video">
-                <video
-                  controls
-                  preload="metadata"
-                  poster="https://vg.hudl.com/p-highlights/Team/65211/699e89ba45560a087c6eed9b/6a2c56c2_360.jpg?v=AAD041FE2F74DE08"
-                >
-                  <source
-                    src="https://vg.hudl.com/p-highlights/Team/65211/699e89ba45560a087c6eed9c/4c437a84_480.mp4?v=7C132FF62F74DE08"
-                    type="video/mp4"
-                  />
-                </video>
-              </div>
-              <span class="highlight-date">Feb. 24, 2026</span>
-              <h3>Millbrook at Wakefield • Game Recap</h3>
-              <p>10 clips from the Feb. 24, 2026 matchup.</p>
-              <a
-                href="https://www.hudl.com/video/3/65211/699e89ba45560a087c6eed9c"
-                target="_blank"
-                rel="noreferrer"
-                >Open on Hudl</a
-              >
-            </article>
-
+          <div id="hudl-feed" class="hudl-grid">
             <article class="hudl-card">
               <div class="hudl-video">
                 <video
@@ -289,7 +265,6 @@
               </div>
               <span class="highlight-date">Feb. 24, 2026</span>
               <h3>4 Three Pointers vs Wakefield</h3>
-              <p>Four made threes collected into one Hudl highlight reel.</p>
               <a
                 href="https://www.hudl.com/video/3/28661626/699e89b97860e7176b136b3a"
                 target="_blank"
@@ -303,19 +278,41 @@
                 <video
                   controls
                   preload="metadata"
-                  poster="https://vg.hudl.com/p-highlights/Team/65211/699c79b07860e7176b0f6897/7111c45a_360.jpg?v=8A864468F572DE08"
+                  poster="https://vg.hudl.com/p-highlights/User/28661626/699c79ae7860e7176b0f6857/02f16e69_360.jpg?v=4B45C446F572DE08"
                 >
                   <source
-                    src="https://vg.hudl.com/p-highlights/Team/65211/699c79b07860e7176b0f6898/f739d06a_480.mp4?v=DEEAC85FF572DE08"
+                    src="https://vg.hudl.com/p-highlights/User/28661626/699c79ae7860e7176b0f6859/8ea9b341_480.mp4?v=22ADD241F572DE08"
+                    type="video/mp4"
+                  />
+                </video>
+              </div>
+              <span class="highlight-date">Feb. 23, 2026</span>
+              <h3>4 Three Pointers vs Leesville Road</h3>
+              <a
+                href="https://www.hudl.com/video/3/28661626/699c79ae7860e7176b0f6859"
+                target="_blank"
+                rel="noreferrer"
+                >Open on Hudl</a
+              >
+            </article>
+
+            <article class="hudl-card">
+              <div class="hudl-video">
+                <video
+                  controls
+                  preload="metadata"
+                  poster="https://vg.hudl.com/p-highlights/User/28661626/69952c7ff95a81a9a8789c1b/a5d1b03b_360.jpg?v=33ACCE5E9B6EDE08"
+                >
+                  <source
+                    src="https://vg.hudl.com/p-highlights/User/28661626/69952c7ff95a81a9a8789c1d/8ab9d841_480.mp4?v=E4DC9C5A9B6EDE08"
                     type="video/mp4"
                   />
                 </video>
               </div>
               <span class="highlight-date">Feb. 18, 2026</span>
-              <h3>Millbrook at Leesville Road • Game Recap</h3>
-              <p>8 clips from the Feb. 18, 2026 road game.</p>
+              <h3>Game Highlights vs Wakefield</h3>
               <a
-                href="https://www.hudl.com/video/3/65211/699c79b07860e7176b0f6898"
+                href="https://www.hudl.com/video/3/28661626/69952c7ff95a81a9a8789c1d"
                 target="_blank"
                 rel="noreferrer"
                 >Open on Hudl</a
@@ -537,6 +534,30 @@
           .join("");
       }
 
+      function renderHudlFeed(items) {
+        const container = document.getElementById("hudl-feed");
+        if (!container || !Array.isArray(items) || !items.length) return;
+
+        container.innerHTML = items
+          .map(
+            (item) => `
+              <article class="hudl-card">
+                <div class="hudl-video">
+                  <video controls preload="metadata" poster="${escapeHtml(item.poster || "")}">
+                    <source src="${escapeHtml(item.videoUrl || "")}" type="video/mp4" />
+                  </video>
+                </div>
+                <span class="highlight-date">${escapeHtml(item.date || "")}</span>
+                <h3>${escapeHtml(item.title || "")}</h3>
+                <a href="${escapeHtml(item.url || "#")}" target="_blank" rel="noreferrer">
+                  ${escapeHtml(item.cta || "Open on Hudl")}
+                </a>
+              </article>
+            `
+          )
+          .join("");
+      }
+
       async function loadArticleFeeds() {
         try {
           const response = await fetch("data/news.json", {
@@ -558,6 +579,7 @@
             sections.prephoops?.items || [],
             "news"
           );
+          renderHudlFeed(sections.hudl?.items || []);
         } catch (error) {
           console.warn("Article feed JSON could not be loaded.", error);
         }

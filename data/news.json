@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-30T21:30:00Z",
+  "generatedAt": "2026-05-01T15:52:56+00:00",
   "sections": {
     "maxpreps": {
       "source": "MaxPreps",
@@ -7,23 +7,23 @@
         {
           "date": "Feb. 18, 2026",
           "title": "Game report: Rolesville",
-          "summary": "Matt Kuppinen posted the highest shooting accuracy he's had since back in November of 2025 on Thursday. He posted 21 points with a field goal",
           "url": "https://www.maxpreps.com/news/fynkaPXnJEW-eoJP7ieE0Q/matt-kuppinen-game-report-vs-rolesville--how-to-watch.htm",
-          "cta": "Read article"
+          "cta": "Read article",
+          "summary": "Matt Kuppinen posted the highest shooting accuracy he's had since back in November of 2025 on Thursday. He posted 21 points with a field goal"
         },
         {
           "date": "Feb. 17, 2026",
           "title": "Season-best vs. Corinth Holders",
-          "summary": "Matt Kuppinen has led Millbrook in steals on the season and he led the team again on Friday. Kuppinen produced his best game of the",
           "url": "https://www.maxpreps.com/news/auQDMdXfsEWOm0J43jt5qw/matt-kuppinen-game-report-vs-corinth-holders--how-to-watch.htm",
-          "cta": "Read article"
+          "cta": "Read article",
+          "summary": "Matt Kuppinen has led Millbrook in steals on the season and he led the team again on Friday. Kuppinen produced his best game of the"
         },
         {
           "date": "Feb. 9, 2026",
           "title": "Hot shooting run",
-          "summary": "While it always takes a team to win, one person punching above their weight class on Friday was Matt Kuppinen. He was locked in, shooting",
           "url": "https://www.maxpreps.com/news/P-oNxLK1qEmsSea46llQLw/matt-kuppinen-game-report-%40-enloe.htm",
-          "cta": "Read article"
+          "cta": "Read article",
+          "summary": "While it always takes a team to win, one person punching above their weight class on Friday was Matt Kuppinen . He was locked in,"
         }
       ]
     },
@@ -33,30 +33,59 @@
         {
           "date": "Jan. 13, 2026",
           "title": "Day Four John Wall Holiday Invitational Standouts (Part One)",
-          "summary": "As I am finally catching up on the writing we get a chance to look at one of the most important days of the high",
           "url": "https://prephoops.com/2026/01/day-four-john-wall-holiday-invitational-standouts-part-one/",
-          "cta": "Read at Prep Hoops"
+          "cta": "Read at Prep Hoops",
+          "summary": "As I am finally catching up on the writing we get a chance to look at one of the most important days of the high"
         },
         {
           "date": "Nov. 28, 2025",
           "title": "919 PG's Making Early Noise",
-          "summary": "The HoopState has many different sub sections that are known for producing different types of talent. The 919 area has become synonymous with elite PG",
           "url": "https://prephoops.com/2025/11/919-pgs-making-early-noise/",
-          "cta": "Read at Prep Hoops"
+          "cta": "Read at Prep Hoops",
+          "summary": "The HoopState has many different sub sections that are known for producing different types of talent. The 919 area has become synonymous with elite PG"
         },
         {
           "date": "Sept. 6, 2025",
           "title": "Film Room: Summer in Review (Part 6)",
-          "summary": "Take a look at Part 6 of the Film Room: Summer in Review series as we breakdown another five prospects in the state of North",
           "url": "https://prephoops.com/2025/09/film-room-summer-in-review-part-6/",
-          "cta": "Read at Prep Hoops"
+          "cta": "Read at Prep Hoops",
+          "summary": "Take a look at Part 6 of the Film Room: Summer in Review series as we breakdown another five prospects in the state of North"
         },
         {
           "date": "June 30, 2025",
           "title": "Incoming Sophomore Guards at East Coast Invitational",
-          "summary": "This week we checked in at the East Coast Invitational team camp in Jacksonville, NC to watch some of the top high school teams from",
           "url": "https://prephoops.com/2025/06/incoming-sophomore-guards-at-east-coast-invitational/",
-          "cta": "Read at Prep Hoops"
+          "cta": "Read at Prep Hoops",
+          "summary": "This week we checked in at the East Coast Invitational team camp in Jacksonville, NC to watch some of the top high school teams from"
+        }
+      ]
+    },
+    "hudl": {
+      "source": "Hudl",
+      "items": [
+        {
+          "date": "Feb. 25, 2026",
+          "title": "4 Three Pointers vs Wakefield",
+          "poster": "https://vg.hudl.com/p-highlights/User/28661626/699e89b97860e7176b136b39/8dfd76b1_360.jpg?v=2C230AF62F74DE08",
+          "videoUrl": "https://vg.hudl.com/p-highlights/User/28661626/699e89b97860e7176b136b3a/94282b86_480.mp4?v=466D46EF2F74DE08",
+          "url": "https://www.hudl.com/video/3/28661626/699e89b97860e7176b136b3a",
+          "cta": "Open on Hudl"
+        },
+        {
+          "date": "Feb. 23, 2026",
+          "title": "4 Three Pointers vs Leesville Road",
+          "poster": "https://vg.hudl.com/p-highlights/User/28661626/699c79ae7860e7176b0f6857/02f16e69_360.jpg?v=4B45C446F572DE08",
+          "videoUrl": "https://vg.hudl.com/p-highlights/User/28661626/699c79ae7860e7176b0f6859/8ea9b341_480.mp4?v=22ADD241F572DE08",
+          "url": "https://www.hudl.com/video/3/28661626/699c79ae7860e7176b0f6859",
+          "cta": "Open on Hudl"
+        },
+        {
+          "date": "Feb. 18, 2026",
+          "title": "Game Highlights vs Wakefield",
+          "poster": "https://vg.hudl.com/p-highlights/User/28661626/69952c7ff95a81a9a8789c1b/a5d1b03b_360.jpg?v=33ACCE5E9B6EDE08",
+          "videoUrl": "https://vg.hudl.com/p-highlights/User/28661626/69952c7ff95a81a9a8789c1d/8ab9d841_480.mp4?v=E4DC9C5A9B6EDE08",
+          "url": "https://www.hudl.com/video/3/28661626/69952c7ff95a81a9a8789c1d",
+          "cta": "Open on Hudl"
         }
       ]
     }
